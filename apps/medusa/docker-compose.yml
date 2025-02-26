@@ -1,0 +1,42 @@
+name: "medusa"
+services:
+  postgres:
+    image: postgres:17
+    ports:
+      - '${FORWARD_DB_PORT:-5432}:5432'
+    environment:
+      TZ: "Europe/Amsterdam"
+      POSTGRES_DB: 'medusa'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'password'
+      PGPASSWORD: 'password'
+    volumes:
+      - 'medusa-webshop_pgsql:/var/lib/postgresql/data'
+    networks:
+      - medusa
+    healthcheck:
+      test: [ "CMD", "pg_isready" ]
+      retries: 3
+      timeout: 5s
+
+  redis:
+    image: 'redis:alpine'
+    ports:
+      - '${FORWARD_REDIS_PORT:-6379}:6379'
+    volumes:
+      - 'medusa-webshop_redis:/data'
+    networks:
+      - medusa
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      retries: 3
+      timeout: 5s
+
+networks:
+  medusa:
+    driver: bridge
+volumes:
+  medusa-webshop_pgsql:
+    driver: local
+  medusa-webshop_redis:
+    driver: local
