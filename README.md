@@ -21,3 +21,73 @@ DATABASE_URL=postgres://postgres:password@localhost/medusa
 6. Seed with some dummy data: `pnpm seed`
 7. Start dev server: `pnpm dev`
 8. Open the Medusa Admin at http://localhost:9000/app
+
+
+
+
+# Webbers agency coding challenge
+
+## Requirements
+
+- pnpm
+- docker
+
+## Getting started
+
+### Install dependencies
+
+```shell
+pnpm i
+```
+
+### Publishing the plugin to the local registry
+
+```shell
+# Navigate to the plugin directory
+cd apps/review-plugin && npx medusa plugin:publish
+```
+
+### Adding the plugin to the medusa application
+
+```shell
+# Run this command in the root of the medusa application
+npx medusa plugin:add @webbers/review-plugin
+```
+
+### Setting up the environment
+
+```shell
+# Run this command in the root of the medusa application
+pnpm setup:env
+```
+
+### Starting the database environment
+
+```shell
+# Run this command in the root of the medusa application
+docker compose up
+```
+
+### Installing the medusa plugin from the registry
+
+```shell
+# Run this command in the root of the medusa application
+pnpm i
+```
+
+### Setup migrations, user, and seed data
+
+```shell
+# Run this command in the root of the medusa application
+pnpm medusa db:migrate
+```
+
+```shell
+# Run this command in the root of the medusa application
+pnpm medusa user --email test@test.nl --password test
+```
+
+```shell
+# Run this command in the root of the medusa application
+pnpm seed
+```

@@ -2,7 +2,7 @@
   "version": "v1",
   "packages": {
     "@webbers/review-plugin": {
-      "signature": "caf28c5a40f58b8b41d3ec4a1c65a2c9",
+      "signature": "d1329d3989c72ec05d8f20df529e672d",
       "file": true
     }
   }
