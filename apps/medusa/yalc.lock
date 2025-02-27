@@ -1,9 +1,0 @@
-{
-  "version": "v1",
-  "packages": {
-    "@webbers/review-plugin": {
-      "signature": "d1329d3989c72ec05d8f20df529e672d",
-      "file": true
-    }
-  }
-}
