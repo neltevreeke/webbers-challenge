@@ -8,7 +8,6 @@ export const validateCustomerCreateReviewInputStep = createStep(
   "validate-customer-create-review-input",
   async ({ product_id, rating }: ValidateCustomerCreateReviewStepInput, { container }) => {
     const productService = container.resolve("product")
-    const customerService = container.resolve("customer")
 
     const [, productCount] = await productService.listAndCountProducts({
       id: product_id

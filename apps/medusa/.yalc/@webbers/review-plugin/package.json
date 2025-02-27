@@ -47,7 +47,8 @@
     "node": ">=20"
   },
   "dependencies": {
-    "sanitize-html": "^2.14.0"
+    "sanitize-html": "^2.14.0",
+    "zod": "^3.24.2"
   },
-  "yalcSig": "550ebac42c8cb17971e79c795980562a"
+  "yalcSig": "e17120e2d92d3c72de832c5946acdf87"
 }
