@@ -6,6 +6,7 @@ import {
 import { customerCreateReviewSchema } from "./store/reviews/validation"
 import { customerGetReviewsQuerySchema } from "./store/products/[productId]/reviews/validation"
 import { adminGetReviewsQuerySchema } from "./admin/reviews/validation"
+import { adminUpdateReviewSchema } from "./admin/reviews/[id]/validation"
 
 export default defineMiddlewares({
   routes: [
@@ -31,6 +32,13 @@ export default defineMiddlewares({
       middlewares: [
         // @ts-expect-error -- According to docs, this should be a valid type: https://docs.medusajs.com/learn/fundamentals/api-routes/validation#step-1-create-validation-schema
         validateAndTransformQuery(adminGetReviewsQuerySchema, {})
+      ]
+    }, {
+      matcher: "/admin/reviews/:id",
+      method: "PUT",
+      middlewares: [
+        // @ts-expect-error -- According to docs, this should be a valid type: https://docs.medusajs.com/learn/fundamentals/api-routes/validation#step-1-create-validation-schema
+        validateAndTransformBody(adminUpdateReviewSchema)
       ]
     }
   ]

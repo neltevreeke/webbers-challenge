@@ -40,10 +40,10 @@
     "@mikro-orm/knex": "6.4.3",
     "@mikro-orm/migrations": "6.4.3",
     "@mikro-orm/postgresql": "6.4.3",
-    "@tanstack/react-query": "^5.66.9",
     "awilix": "^8.0.1",
     "pg": "^8.13.0",
-    "react-router-dom": "^7.2.0"
+    "react-router-dom": "^7.2.0",
+    "@tanstack/react-query": "5.64.2"
   },
   "engines": {
     "node": ">=20"
@@ -53,5 +53,5 @@
     "sanitize-html": "^2.14.0",
     "zod": "^3.24.2"
   },
-  "yalcSig": "fb2f27b131af63addab108fa4f14029c"
+  "yalcSig": "caf28c5a40f58b8b41d3ec4a1c65a2c9"
 }
