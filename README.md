@@ -79,10 +79,10 @@ curl -X POST http://localhost:9000/store/reviews \
      -H "X-Publishable-API-Key: <ENTER-YOUR-PUBLISHABLE-KEY>" \
      -d '{
             "product_id": "<ENTER-A-VALID-PRODUCT-ID>",
-            "rating": 3,
-            "email": "test@test.nl",
-            "title": "This is a testing title",
-            "description": "This is a testing description",
+            "rating": 1,
+            "email": "freek_vonk@bioloog.nl",
+            "title": "Nog steeds niet binnen.",
+            "description": "Heb nog steeds mijn krokodil niet ontvangen. Twee uur geleden nog met spoed besteld.",
             "locale": "nl"
          }'
 ```
