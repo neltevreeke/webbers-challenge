@@ -85,6 +85,8 @@ export const reviewsDataTableColumns = [
     header: undefined,
     cell: (row) => {
       const id = row.getValue()
+      const searchParams= new URLSearchParams()
+      searchParams.set("reviewId", id) 
 
       return (
         <div className="justify-end flex">
@@ -95,7 +97,7 @@ export const reviewsDataTableColumns = [
             </IconButton>
           </DropdownMenu.Trigger>
           <DropdownMenu.Content align="end">
-            <Link to={`/reviews/${id}`} className="gap-x-2">
+            <Link to={`/reviews?${searchParams.toString()}`} className="gap-x-2">
               <DropdownMenu.Item className="gap-x-2">
                 <Pencil className="text-ui-fg-subtle" />
                 Edit

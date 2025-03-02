@@ -1,13 +1,14 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Button, Container, Heading } from "@medusajs/ui";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { AdminGetReviewResponse, AdminUpdateReviewResponse } from "../../../../api/admin/reviews/[id]/route";
-import { sdk } from "../../../lib/sdk";
+import { AdminGetReviewResponse, AdminUpdateReviewResponse } from "../../api/admin/reviews/[id]/route";
 import { ArrowLeft } from "@medusajs/icons";
-import Rating from "../../../components/Rating";
+import Rating from "./Rating";
+import { sdk } from "../lib/sdk";
 
-const ReviewDetailPage = () => {
-  const { reviewId } = useParams();
+const ReviewDetail = () => {
+  const [searchParams] = useSearchParams();
+  const reviewId = searchParams.get("reviewId");
   const queryClient = useQueryClient();
   const { data, isLoading } = useQuery<AdminGetReviewResponse>({
     queryFn: () => sdk.client.fetch(`/admin/reviews/${reviewId}`),
@@ -18,7 +19,7 @@ const ReviewDetailPage = () => {
     await sdk.client.fetch<AdminUpdateReviewResponse>(`/admin/reviews/${reviewId}`, {
       method: "PUT",
       body: {
-        is_published: !data?.result.is_published
+        is_published: !data?.result?.is_published
       }
     })
 
@@ -30,7 +31,7 @@ const ReviewDetailPage = () => {
     })
   }
 
-  if (isLoading || !data) {
+  if (isLoading || !data?.result) {
     return (
       <Container className="divide-y p-0">
         <div className="flex items-center justify-between px-6 py-4">
@@ -102,4 +103,4 @@ const ReviewDetailPage = () => {
   )
 }
 
-export default ReviewDetailPage;
+export default ReviewDetail;

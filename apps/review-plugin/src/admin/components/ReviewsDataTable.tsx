@@ -5,7 +5,6 @@ import {
 } from "@medusajs/ui"
 import { useMemo, useState } from "react"
 import { useQuery } from "@tanstack/react-query"
-
 import type { GetReviewsResponse } from "../../api/admin/reviews/route"
 import { reviewsDataTableColumns } from "./ReviewsDataTableColumns"
 import { sdk } from "../lib/sdk"
