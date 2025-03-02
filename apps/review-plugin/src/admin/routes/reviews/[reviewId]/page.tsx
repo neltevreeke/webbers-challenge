@@ -1,5 +1,4 @@
 import { Link, useParams } from "react-router-dom";
-import{ defineRouteConfig } from "@medusajs/admin-sdk";
 import { Button, Container, Heading } from "@medusajs/ui";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { AdminGetReviewResponse, AdminUpdateReviewResponse } from "../../../../api/admin/reviews/[id]/route";
@@ -8,15 +7,15 @@ import { ArrowLeft } from "@medusajs/icons";
 import Rating from "../../../components/Rating";
 
 const ReviewDetailPage = () => {
-  const { id } = useParams();
+  const { reviewId } = useParams();
   const queryClient = useQueryClient();
   const { data, isLoading } = useQuery<AdminGetReviewResponse>({
-    queryFn: () => sdk.client.fetch(`/admin/reviews/${id}`),
-    queryKey: ["review", id]
+    queryFn: () => sdk.client.fetch(`/admin/reviews/${reviewId}`),
+    queryKey: ["review", reviewId]
   })
 
   const handlePublishReview = async () => {
-    await sdk.client.fetch<AdminUpdateReviewResponse>(`/admin/reviews/${id}`, {
+    await sdk.client.fetch<AdminUpdateReviewResponse>(`/admin/reviews/${reviewId}`, {
       method: "PUT",
       body: {
         is_published: !data?.result.is_published
@@ -24,7 +23,7 @@ const ReviewDetailPage = () => {
     })
 
     queryClient.invalidateQueries({
-      queryKey: ["review", id]
+      queryKey: ["review", reviewId]
     });
     queryClient.invalidateQueries({
       queryKey: ["reviews"]
@@ -102,9 +101,5 @@ const ReviewDetailPage = () => {
     </div>
   )
 }
-
-export const config = defineRouteConfig({
-  label: "Review detail",
-})
 
 export default ReviewDetailPage;

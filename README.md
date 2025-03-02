@@ -15,9 +15,9 @@ pnpm i
 
 ### Publishing the plugin to the local registry
 
-Navigate to the plugin directory
+Run this command in the plugin directory
 ```shell
-cd apps/review-plugin && npx medusa plugin:publish
+npx medusa plugin:build && npx medusa plugin:publish
 ```
 
 ### Adding the plugin to the medusa application
