@@ -5,6 +5,9 @@
 - pnpm
 - docker
 
+## Introduction
+This is a repo for the webbers coding challenge. There's 2 branches, "main", and "query-param". In my opinion the "main" branch should be the correct way to solve the challenge, the "query-param" branch is an alternative solution.
+
 ## Getting started
 
 ### Install dependencies
