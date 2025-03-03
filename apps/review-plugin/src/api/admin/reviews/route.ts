@@ -20,7 +20,9 @@ export async function GET(
   const skip = query.offset ? parseInt(query.offset, 10) : 0
   const take = query.limit ? parseInt(query.limit, 10) : 15
 
-  const [result, total] = await reviewModuleService.listAndCountReviews({}, {
+  const [result, total] = await reviewModuleService.listAndCountReviews({
+    q: query.search
+  }, {
     skip,
     take
   })

@@ -21,34 +21,41 @@ const ReviewsDataTable = ({
     pageSize: limit,
     pageIndex: 0
   })
+  const [search, setSearch] = useState<string>("")
   const offset = useMemo(() => {
     return pagination.pageIndex * limit
   }, [pagination])
   // Note: Better to create a hook for this if usage is recurring
-  const { data, isLoading } = useQuery<GetReviewsResponse>({
+  const { data } = useQuery<GetReviewsResponse>({
     queryFn: () => sdk.client.fetch("/admin/reviews",{
       query: {
         limit,
-        offset
+        offset,
+        search
       }
     }),
-    queryKey: ["reviews", offset, limit]
+    queryKey: ["reviews", offset, limit, search]
   })
   const table = useDataTable({
     columns: reviewsDataTableColumns,
     data: data?.result || [],
     getRowId: (row) => row.id,
     rowCount: data?.total || 0,
-    isLoading,
     pagination: {
       state: pagination,
       onPaginationChange: setPagination
+    },
+    search: {
+      state: search,
+      onSearchChange: setSearch,
     }
-    // TODO: Add Search query handling
   })
 
   return (
     <DataTable instance={table}>
+      <div className="w-[200px] mb-4 ml-auto">
+        <DataTable.Search placeholder="Search" />
+      </div>
       <DataTable.Table />
       <DataTable.Pagination />
     </DataTable>
